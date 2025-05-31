@@ -26,6 +26,9 @@ jobs:
         run: |
           echo ${{ secrets.JF_PASSWORD }} | docker login ${{ secrets.JF_URL }} -u ${{ secrets.JF_USER }} --password-stdin
 
+      - name: Docker login to Artifactory
+        run: |
+          jf rt ping
       # - name: Authenticate Docker
       #   uses: docker/login-action@v3
       #   with:
