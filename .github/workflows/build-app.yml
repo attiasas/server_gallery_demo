@@ -31,15 +31,15 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t ${{ secrets.JF_URL }}/${{ secrets.JF_DOCKER_REPO }}/npm-demo:latest .
+          docker build -t productdemo.jfrog.io/gartner-docker/jfrog/npm-demo:latest .
 
       - name: Run JFrog Docker scan
         run: |
-          jf docker scan ${{ secrets.JF_URL }}/${{ secrets.JF_DOCKER_REPO }}/npm-demo:latest
+          jf docker scan productdemo.jfrog.io/gartner-docker/jfrog/npm-demo:latest
 
       - name: Push Docker image to Artifactory
         run: |
-          docker push ${{ secrets.JF_URL }}/${{ secrets.JF_DOCKER_REPO }}/npm-demo:latest
+          docker push productdemo.jfrog.io/gartner-docker/jfrog/npm-demo:latest
 
       - name: Collect build info
         run: |
