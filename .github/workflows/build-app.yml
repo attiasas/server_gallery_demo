@@ -1,0 +1,55 @@
+name: JFrog Security Demo App Builder
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-scan:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up JFrog CLI
+        uses: jfrog/setup-jfrog-cli@v3
+        with:
+          version: latest
+          JF_URL: ${{ secrets.JF_URL }}
+          JF_USER: ${{ secrets.JF_USER }}
+          JF_PASSWORD: ${{ secrets.JF_PASSWORD }}
+
+      - name: Docker login to Artifactory
+        run: |
+          echo ${{ secrets.JF_PASSWORD }} | docker login ${{ secrets.JF_URL }} -u ${{ secrets.JF_USER }} --password-stdin
+
+      - name: Pull base image from Artifactory
+        run: |
+          docker pull ${{ secrets.JF_URL }}/${{ secrets.JF_DOCKER_REPO }}/jfrog/demo-security:latest
+
+      - name: Build Docker image
+        run: |
+          docker build -t ${{ secrets.JF_URL }}/${{ secrets.JF_DOCKER_REPO }}/npm-demo:latest .
+
+      - name: Run JFrog Docker scan
+        run: |
+          jf docker scan ${{ secrets.JF_URL }}/${{ secrets.JF_DOCKER_REPO }}/npm-demo:latest
+
+      - name: Push Docker image to Artifactory
+        run: |
+          docker push ${{ secrets.JF_URL }}/${{ secrets.JF_DOCKER_REPO }}/npm-demo:latest
+
+      - name: Collect build info
+        run: |
+          jf rt build-collect-env
+          jf rt build-add-git
+
+      - name: Publish build info
+        run: |
+          jf rt build-publish npm-demo-build 1
+
+      - name: Trigger Xray build scan
+        run: |
+          jf rt build-scan npm-demo-build 1
