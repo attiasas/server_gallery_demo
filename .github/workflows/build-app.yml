@@ -35,7 +35,8 @@ jobs:
 
       - name: Pull base image from Artifactory
         run: |
-          jf docker pull productdemo.jfrog.io/gartner-docker/jfrog/demo-security:latest
+          #jf docker pull productdemo.jfrog.io/gartner-docker/jfrog/demo-security:latest
+          jf docker pull ${{ secrets.JF_URL }}/gartner-docker/jfrog/demo-security:latest
 
       - name: Build Docker image
         run: |
