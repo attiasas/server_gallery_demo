@@ -35,11 +35,11 @@ jobs:
 
       - name: Pull base image from Artifactory
         run: |
-          docker pull productdemo.jfrog.io/gartner-docker/jfrog/demo-security:latest
+          jf docker pull productdemo.jfrog.io/gartner-docker/jfrog/demo-security:latest
 
       - name: Build Docker image
         run: |
-          docker build -t productdemo.jfrog.io/gartner-docker/jfrog/npm-demo:latest .
+          jf docker build -t productdemo.jfrog.io/gartner-docker/jfrog/npm-demo:latest .
 
       - name: Run JFrog Docker scan
         run: |
@@ -48,7 +48,7 @@ jobs:
 
       - name: Push Docker image to Artifactory
         run: |
-          docker push productdemo.jfrog.io/gartner-docker/jfrog/npm-demo:latest
+          jf docker push productdemo.jfrog.io/gartner-docker/jfrog/npm-demo:latest
 
       - name: Collect build info
         run: |
