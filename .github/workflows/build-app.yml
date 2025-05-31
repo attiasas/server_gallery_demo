@@ -18,7 +18,7 @@ jobs:
         with:
           version: latest
           JF_URL: ${{ secrets.JF_URL }}
-          #JF_XRAY_URL: ${{ secrets.JF_URL }}/xray
+          JF_XRAY_URL: ${{ secrets.JF_URL }}/xray
           JF_USER: ${{ secrets.JF_USER }}
           JF_PASSWORD: ${{ secrets.JF_PASSWORD }}
 
