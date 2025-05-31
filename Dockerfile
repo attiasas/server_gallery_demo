@@ -1,6 +1,9 @@
 # Use the base image from Artifactory
 FROM productdemo.jfrog.io/gartner-docker/jfrog/demo-security:latest
 
+# Install Node.js and npm
+RUN apk add --no-cache nodejs npm
+
 # Set the working directory
 WORKDIR /app
 
