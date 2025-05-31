@@ -14,11 +14,11 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Set up JFrog CLI
-        uses: jfrog/setup-jfrog-cli@v3
+        uses: jfrog/setup-jfrog-cli@v4
         with:
           version: latest
           JF_URL: ${{ secrets.JF_URL }}
-          JF_XRAY_URL: ${{ secrets.JF_URL }}/xray
+          #JF_XRAY_URL: ${{ secrets.JF_URL }}/xray
           JF_USER: ${{ secrets.JF_USER }}
           JF_PASSWORD: ${{ secrets.JF_PASSWORD }}
 
@@ -36,6 +36,7 @@ jobs:
 
       - name: Run JFrog Docker scan
         run: |
+          docker images
           jf docker scan productdemo.jfrog.io/gartner-docker/jfrog/npm-demo:latest
 
       - name: Push Docker image to Artifactory
