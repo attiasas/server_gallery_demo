@@ -38,7 +38,6 @@ jobs:
 
       - name: Pull base image from Artifactory
         run: |
-          # jf docker pull productdemo.jfrog.io/gartner-docker/jfrog/demo-security:latest
           jf docker pull ${{ vars.JF_URL }}/gartner-docker/jfrog/demo-security:latest
 
       - name: Build Docker image
@@ -59,10 +58,11 @@ jobs:
           jf rt build-collect-env
           jf rt build-add-git
 
-      - name: Publish build info
-        run: |
-          jf rt build-publish npm-demo-build 1
+      # - name: Publish build info
+      #   run: |
+      #     jf rt build-publish npm-demo-build 1
 
       - name: Trigger Xray build scan
         run: |
-          jf rt build-scan npm-demo-build 1
+          #jf rt build-scan npm-demo-build 1
+          jf build-scan
