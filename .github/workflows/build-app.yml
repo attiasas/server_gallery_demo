@@ -55,7 +55,7 @@ jobs:
 
       - name: Collect build info and scan
         run: |
-          jf rt build-collect-env "JFrog-Security-Demo-App-Builder" ${{ github.run_number }}
-          jf rt build-add-git "JFrog-Security-Demo-App-Builder" ${{ github.run_number }}
-          jf rt build-publish "JFrog-Security-Demo-App-Builder" ${{ github.run_number }}
-          jf build-scan "JFrog-Security-Demo-App-Builder" ${{ github.run_number }} --fail
+          jf rt build-collect-env "JFrog Security Demo App Builder" ${{ github.run_number }}
+          jf rt build-add-git "JFrog Security Demo App Builder" ${{ github.run_number }}
+          jf rt build-publish "JFrog Security Demo App Builder" ${{ github.run_number }}
+          jf build-scan "JFrog Security Demo App Builder" ${{ github.run_number }} --fail
