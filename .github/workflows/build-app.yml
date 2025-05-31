@@ -42,11 +42,11 @@ jobs:
 
       - name: Build Docker image
         run: |
-          jf docker build -t productdemo.jfrog.io/gartner-docker/jfrog/npm-demo:latest .
+          jf docker build -t productdemo.jfrog.io/gartner-docker/jfrog/npm-demo:${{ github.run_number }} .
     
       - name: Push Docker image to Artifactory
         run: |
-          jf docker push productdemo.jfrog.io/gartner-docker/jfrog/npm-demo:latest
+          jf docker push productdemo.jfrog.io/gartner-docker/jfrog/npm-demo:${{ github.run_number }}
 
       # - name: Run JFrog Docker scan
       #   run: |
@@ -55,7 +55,7 @@ jobs:
 
       - name: Collect build info and scan
         run: |
-          jf rt build-collect-env "JFrog Security Demo App Builder" ${{ github.run_number }}
-          jf rt build-add-git "JFrog Security Demo App Builder" ${{ github.run_number }}
-          jf rt build-publish "JFrog Security Demo App Builder" ${{ github.run_number }}
-          jf build-scan "JFrog Security Demo App Builder" ${{ github.run_number }}
+          jf rt build-collect-env "JFrog-Security-Demo-App-Builder" ${{ github.run_number }}
+          jf rt build-add-git "JFrog-Security-Demo-App-Builder" ${{ github.run_number }}
+          jf rt build-publish "JFrog-Security-Demo-App-Builder" ${{ github.run_number }}
+          jf build-scan "JFrog-Security-Demo-App-Builder" ${{ github.run_number }}
