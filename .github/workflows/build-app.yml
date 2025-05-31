@@ -55,6 +55,6 @@ jobs:
 
       - name: Collect build info and scan
         run: |
-          jf rt build-collect-env
-          jf rt build-add-git
-          jf build-scan
+          jf rt build-collect-env ${{ env.BUILD_NAME }} ${{ github.run_number }}
+          jf rt build-add-git ${{ env.BUILD_NAME }} ${{ github.run_number }}
+          jf build-scan ${{ env.BUILD_NAME }} ${{ github.run_number }}
