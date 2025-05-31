@@ -43,26 +43,18 @@ jobs:
       - name: Build Docker image
         run: |
           jf docker build -t productdemo.jfrog.io/gartner-docker/jfrog/npm-demo:latest .
+    
+      - name: Push Docker image to Artifactory
+        run: |
+          jf docker push productdemo.jfrog.io/gartner-docker/jfrog/npm-demo:latest
 
       - name: Run JFrog Docker scan
         run: |
           docker images
           jf docker scan productdemo.jfrog.io/gartner-docker/jfrog/npm-demo:latest
 
-      - name: Push Docker image to Artifactory
-        run: |
-          jf docker push productdemo.jfrog.io/gartner-docker/jfrog/npm-demo:latest
-
-      - name: Collect build info
+      - name: Collect build info and scan
         run: |
           jf rt build-collect-env
           jf rt build-add-git
-
-      # - name: Publish build info
-      #   run: |
-      #     jf rt build-publish npm-demo-build 1
-
-      - name: Trigger Xray build scan
-        run: |
-          #jf rt build-scan npm-demo-build 1
           jf build-scan
