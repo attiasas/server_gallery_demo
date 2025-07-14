@@ -59,6 +59,7 @@ jobs:
       #   run: |
       #     docker images
       #     jf docker scan productdemo.jfrog.io/gartner-docker/jfrog/npm-demo:${{ github.run_number }}
+      #
 
       - name: Run JFrog Docker scan
         run: |
