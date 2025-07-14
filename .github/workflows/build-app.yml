@@ -54,10 +54,10 @@ jobs:
           jf rt build-add-git "JFrog Security Demo App Builder" ${{ github.run_number }}
           jf rt build-publish "JFrog Security Demo App Builder" ${{ github.run_number }}
           
-      - name: Run JFrog Docker scan
-        run: |
-          docker images
-          jf docker scan productdemo.jfrog.io/gartner-docker/jfrog/npm-demo:${{ github.run_number }}
+      # - name: Run JFrog Docker scan
+      #   run: |
+      #     docker images
+      #     jf docker scan productdemo.jfrog.io/gartner-docker/jfrog/npm-demo:${{ github.run_number }}
 
       - name: Run JFrog Docker scan
         run: |
