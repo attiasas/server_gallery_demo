@@ -65,4 +65,4 @@ jobs:
         env:
           JFROG_CLI_LOG_LEVEL: DEBUG
         run: |
-          jf build-scan --fail --format=json "JFrog Security Demo App Builder" ${{ github.run_number }}
+          jf build-scan --fail --format=simple-json "JFrog Security Demo App Builder" ${{ github.run_number }}
