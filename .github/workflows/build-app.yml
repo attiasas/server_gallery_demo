@@ -63,4 +63,4 @@ jobs:
 
       - name: Run JFrog Docker scan
         run: |
-          jf build-scan "JFrog Security Demo App Builder" ${{ github.run_number }} --fail
+          jf build-scan --fail --format=simple-json "JFrog Security Demo App Builder" ${{ github.run_number }}
