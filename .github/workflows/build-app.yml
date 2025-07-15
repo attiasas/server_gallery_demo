@@ -20,7 +20,6 @@ jobs:
           #JFROG_XRAY_URL: ${{ secrets.JF_URL }}/xray
           JF_USER: ${{ secrets.JF_USER }}
           JF_PASSWORD: ${{ secrets.JF_PASSWORD }}
-          JFROG_CLI_LOG_LEVEL: DEBUG
 
       - name: jf rt ping
         run: |
@@ -63,5 +62,7 @@ jobs:
       #
 
       - name: Run JFrog Docker scan
+        env:
+          JFROG_CLI_LOG_LEVEL: DEBUG
         run: |
           jf build-scan --fail --format=json "JFrog Security Demo App Builder" ${{ github.run_number }}
